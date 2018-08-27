@@ -169,27 +169,13 @@ class DemandsStub(object):
     pass
 
 
-class RepoStub(object):
+class RepoStub(dnf.repo.Repo):
     """A class mocking `dnf.repo.Repo`"""
-
-    enabled = True
 
     def __init__(self, id_):
         """Initialize the repository."""
-        self.id = id_
-        self.priority = 99
-        self.cost = 1000
+        super(RepoStub, self).__init__(name=id_)
 
-    def _valid(self):
-        """Return a message if the repository is not valid."""
-
-    def enable(self):
-        """Enable the repo"""
-        self.enabled = True
-
-    def disable(self):
-        """Disable the repo"""
-        self.enabled = False
 
 class TestCase(unittest.TestCase):
     def assertEmpty(self, collection):
